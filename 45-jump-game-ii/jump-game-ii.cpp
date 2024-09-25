@@ -3,29 +3,27 @@ class Solution {
     int steps;
 
     void recursion(int index){
-        cout << index << endl;
         if(v[index] >= (v.size() - 1 - index)){
             steps++;
             return;
         }
-        int bestStepSize = v[index];
-        int bestStep = bestStepSize + index + v[bestStepSize + index];
+        int bestNextIndex = v[index] + index;
+        int bestStep = bestNextIndex + v[bestNextIndex];
 
         for(int i = v[index] -1; i > 0 ; i--){
             int nextIndex = index + i;
             int stepStrength = nextIndex + v[nextIndex];
-            //if(stepStrength > (index + v[index]))
             if(v[nextIndex] > 0){
                 if(stepStrength > bestStep){
                     bestStep = stepStrength;
-                    bestStepSize = i;
+                    bestNextIndex = nextIndex;
                 }
             }
             
         }
 
         steps++;
-        recursion(bestStepSize + index);
+        recursion(bestNextIndex);
     }
 
 public:
