@@ -16,9 +16,7 @@ public:
                 break;
             }
             count++;
-            if(citations[i] < h){
-                h = citations[i];
-            }
+            h = citations[i];
         }
 
         return min(count,h);
