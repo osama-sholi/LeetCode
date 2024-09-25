@@ -12,7 +12,7 @@ public:
         int h = citations[0];
         int count = 1;
         for(int i = 1; i<citations.size();i++){
-            if(count >= h || count > citations[i]){
+            if(count > citations[i]){
                 break;
             }
             count++;
