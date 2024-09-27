@@ -10,11 +10,7 @@ public:
 
         vector<vector<string>> result;
         for(auto it : m){
-            vector<string> v;
-            for(int i = 0; i < it.second.size(); i++){
-                v.push_back(it.second[i]);
-            }
-            result.push_back(v);
+            result.push_back(it.second);
         }
 
         return result;
