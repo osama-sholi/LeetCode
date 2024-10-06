@@ -1,29 +1,27 @@
 class Solution {
-    vector<int> v;
+    // the counter
     int steps;
 
-    void recursion(int index){
+    void recursion(int index, int prevRear, vector<int>& v){
+        // if we can reach the end directly from this index
         if(v[index] >= (v.size() - 1 - index)){
             steps++;
             return;
         }
-        int bestNextIndex = v[index] + index;
-        int bestStep = bestNextIndex + v[bestNextIndex];
 
-        for(int i = v[index] -1; i > 0 ; i--){
-            int nextIndex = index + i;
-            int stepStrength = nextIndex + v[nextIndex];
-            if(v[nextIndex] > 0){
-                if(stepStrength > bestStep){
-                    bestStep = stepStrength;
-                    bestNextIndex = nextIndex;
-                }
+        // the farthest index we can reach in the next two steps
+        int bestIndex = prevRear;
+
+        // we start comparing the choices of the current index
+        for(int i = prevRear + 1; i <= (index + v[index]) ; i++){
+            if((i + v[i]) > (bestIndex + v[bestIndex])){
+                bestIndex = i;
             }
-            
         }
 
+        // we add a step and go to the chosen index
         steps++;
-        recursion(bestNextIndex);
+        recursion(bestIndex, index + v[index] + 1, v);
     }
 
 public:
@@ -31,9 +29,8 @@ public:
         if(nums.size() == 1){
             return 0;
         }
-        v = nums;
         steps = 0;
-        recursion(0);
+        recursion(0,1,nums);
         return steps;
     }
 };
