@@ -13,7 +13,6 @@ class Solution:
         while current1 != None or current2 != None:
             val1 = getattr(current1, 'val', 0)
             val2= getattr(current2, 'val', 0)
-            print(val1,val2, reminder)
             csum = val1 + val2 + reminder
             newNode = ListNode(csum % 10, None)
             reminder = csum // 10
@@ -21,7 +20,6 @@ class Solution:
                 current3 = newNode
                 result = current3
             else:
-                print(current3)
                 current3.next = newNode
                 current3 = current3.next
             current1 = getattr(current1, 'next', None)
