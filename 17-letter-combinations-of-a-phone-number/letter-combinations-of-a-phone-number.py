@@ -21,11 +21,7 @@ class Solution:
                 if j == sep:
                     k = k + 1 if k < len(board[digits[i]]) - 1 else 0
                     sep += portion_size
-                print('pointers',i,j,k)
-                print(sep)
                 result[j] += board[digits[i]][k]
-            print(result)
-
         
         return result
 
