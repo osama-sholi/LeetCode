@@ -2,8 +2,9 @@ class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         result = []
-        check = set()
         for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
             j = i + 1
             k = len(nums) - 1
             while j < k:
@@ -14,11 +15,9 @@ class Solution:
                     k -= 1
                 else:
                     triplet = [nums[i], nums[j], nums[k]]
-                    tuple_t = (nums[i], nums[j], nums[k])
-
-                    if tuple_t not in check:
-                        result.append(triplet)
-                        check.add(tuple_t)
+                    result.append(triplet)
 
                     j += 1
+                    while nums[j] == nums[j-1] and j < k:
+                        j += 1
         return result
