@@ -8,7 +8,6 @@ class Solution:
         # skip white spaces
         while p < len(s) and s[p] == ' ':
             p += 1
-        print('p',p)
 
         if p == len(s):
             return 0
@@ -24,9 +23,7 @@ class Solution:
         
 
         while p < len(s) and s[p].isnumeric():
-            print('p',p)
             res += s[p]
-            print('res',res)
             p += 1
         
         if not res or res == '-':
