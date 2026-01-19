@@ -5,30 +5,19 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    def __init__(self):
-        self.result = True
-
-    def is_symmetric(self, l, r):
-        if not l and not r:
-            return
-        
-        if l and r:
-            if l.val != r.val:
-                self.result = False
-                return
-    
-            if not self.result:
-                return
-            
-            self.is_symmetric(l.left, r.right)
-            self.is_symmetric(l.right, r.left)
-        else:
-            self.result = False
     def isSymmetric(self, root):
         """
         :type root: Optional[TreeNode]
         :rtype: bool
         """
-        self.is_symmetric(root, root)
-        return self.result
+        def is_mirror(n1, n2): # n1:left, n2:right
+            if not n1 and not n2:
+                return True
+            
+            if not n1 or not n2:
+                return False
+            
+            return n1.val == n2.val and is_mirror(n1.left, n2.right) and is_mirror(n1.right, n2.left)
+        
+        return is_mirror(root.left, root.right)
             
